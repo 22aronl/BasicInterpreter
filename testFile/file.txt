@@ -1,0 +1,10 @@
+10 REM easy
+9 INPUT apple
+11 LET max = 100 + apple
+12 PRINT max
+13 GOTO 20
+14 IF max < 400 THEN 9
+20 END
+LIST
+RUN
+QUIT

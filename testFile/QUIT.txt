@@ -1,0 +1,8 @@
+null
+
+10 REM apple
+13 LET apple = 100
+14 INPUT max
+19 PRINT apple + max
+RUN
+QUIT

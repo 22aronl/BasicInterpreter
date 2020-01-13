@@ -284,6 +284,11 @@ public class Scanner
             || a.equals(",");
     }
     
+    /**
+     * this skips a line
+     * @return the string in that line
+     * @throws IOException unexpected char
+     */
     public String skipLine() throws IOException
     {
         return scanSingleLine();

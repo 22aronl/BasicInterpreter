@@ -17,8 +17,8 @@ public class Evaluator extends Expression
     /**
      * Constructor
      * 
-     * @param exp1 firstExpression
-     * @param exp2 secondExpression
+     * @param expression1 firstExpression
+     * @param expression2 secondExpression
      * @param operand the operand to be applied
      */
     public Evaluator(Expression expression1, Expression expression2,
@@ -75,8 +75,7 @@ public class Evaluator extends Expression
     {
         String a = this.expression1.toString();
         if(expression2 != null)
-            a += " " + this.operand + " "
-            + this.expression2.toString();
+            a += " " + this.operand + " "+ this.expression2.toString();
         return a;
     }
 

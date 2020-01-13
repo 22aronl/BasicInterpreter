@@ -60,7 +60,8 @@ public class Parser
         if (expected.equals(currentToken))
         {
             currentToken = scanner.nextToken();
-        } else
+        } 
+        else
         {
             throw new IllegalArgumentException(expected
                 + " was the expected token, but " + currentToken + "");
@@ -68,7 +69,9 @@ public class Parser
     }
 
     /**
-     * 
+     * Parses a line of the statement
+     * @return a statement of the parsedLine
+     * @throws IOException im not quite sure
      */
     private Statement parseLine() throws IOException
     {
@@ -102,9 +105,9 @@ public class Parser
             else if(currentToken.equals("GOTO"))
             {
                 eat(currentToken);
-                int lineNumber = Integer.parseInt(currentToken);
+                int lineNumbers = Integer.parseInt(currentToken);
                 eat(currentToken);
-                return new Statement(lineNum, new Goto(lineNumber));
+                return new Statement(lineNum, new Goto(lineNumbers));
             }
             else if(currentToken.equals("IF"))
             {
@@ -114,10 +117,10 @@ public class Parser
                 eat(currentToken);
                 Expression exp2 = parseExpression();
                 eat("THEN");
-                int lineNumber = Integer.parseInt(currentToken);
+                int lineNumbers = Integer.parseInt(currentToken);
                 eat(currentToken);
                 return new Statement(lineNum, new 
-                    If(exp1, operand, exp2, lineNumber));
+                    If(exp1, operand, exp2, lineNumbers));
             }
             else if(currentToken.equals("END"))
             {
@@ -157,6 +160,11 @@ public class Parser
         return null;
     }
 
+    /**
+     * Parses the program line by line
+     * @param program the program
+     * @throws IOException unexpected character
+     */
     public void parseLineByLine(Program program) throws IOException
     {
         if(currentToken.equals("RUN"))
@@ -185,6 +193,11 @@ public class Parser
         }
     }
 
+    /**
+     * Parses the entire program
+     * @return the program
+     * @throws IOException Unexpected char
+     */
     public Program parseProgram() throws IOException
     {
         Program program = new Program();
@@ -220,7 +233,12 @@ public class Parser
             }
         }
     }
-    
+
+    /**
+     * Checks if a string is a digit
+     * @param s the given string
+     * @return true if it is ; otherwise false
+     */
     public boolean isDigit(String s)
     {
         try
@@ -289,8 +307,7 @@ public class Parser
         }
         char c = currentToken.charAt(0);
         int ascii = (int) c;
-        if (((ascii) > 64 && (ascii) < 91)
-        || (((ascii) > 96 && (ascii) < 123)) && !isKeyword())
+        if (((ascii) > 64 && (ascii) < 91)|| (((ascii) > 96 && (ascii) < 123)) && !isKeyword())
         { // is an ID
             String x = currentToken;
             eat(currentToken);
@@ -299,6 +316,11 @@ public class Parser
         return null;
     }
 
+    /**
+     * parses a number 
+     * @return the value of the number in a value class
+     * @throws IOException unexpected char
+     */
     public Value parseNumber() throws IOException
     {
         int k = Integer.parseInt(currentToken);

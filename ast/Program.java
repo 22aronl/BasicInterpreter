@@ -3,13 +3,12 @@ package ast;
 import environment.*;
 
 import java.util.*;
-import java.lang.*;
 import java.io.*;
 /**
- *  
+ *  The program
  * 
  * @author Aaron Lo
- * @version 
+ * @version 1-12-19
  */
 public class Program
 {
@@ -25,16 +24,27 @@ public class Program
         shouldContinue = true;
     }
     
+    /**
+     * sets the current line number to k
+     * @param k the line number to be set at
+     */
     public void setLineNumber(int k)
     {
         currentLineNumber = k;
     }
     
+    /**
+     * sets if the program should continue
+     * @param s the boolean of whether to continue
+     */
     public void setContinue(boolean s)
     {
         shouldContinue = s;
     }
     
+    /**
+     * lists all methods
+     */
     public void list()
     {
         Set<Map.Entry<Integer, Statement>> set = map.entrySet();
@@ -44,11 +54,18 @@ public class Program
         }
     }
     
+    /**
+     * adds a statement to the program
+     * @param state the statement to be added
+     */
     public void addStatement(Statement state)
     {
         map.put(state.getLine(), state);
     }
     
+    /**
+     * clears the program for a new run
+     */
     public void clear()
     {
         currentLineNumber = 0;
@@ -56,6 +73,10 @@ public class Program
         shouldContinue = true;
     }
     
+    /**
+     * runs the program
+     * 
+     */
     public void run()
     {
         Environment env = new Environment(this);

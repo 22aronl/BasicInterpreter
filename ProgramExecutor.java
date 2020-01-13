@@ -3,18 +3,22 @@ import scanner.*;
 import environment.*;
 import ast.*;
 import java.util.*;
-import java.lang.*;
 import java.io.*;
 /**
- *  
+ *  Executes the program
  * 
  * @author Aaron Lo
- * @version 
+ * @version 1-12-19
  */
 public class ProgramExecutor
 {
     private static java.util.Scanner sc;
-    public static void main(String[] args) throws IOException, IOException
+    /**
+     * runs the program
+     * @param args nothing
+     * @throws IOException unknown char
+     */
+    public static void main(String[] args) throws IOException
     {
         System.out.println("Would you like to type in to console or load a file?");
         String string = "";
@@ -35,9 +39,14 @@ public class ProgramExecutor
             loadFile();
     }
 
+    /**
+     * THis can create a file in which consol commands are logged
+     * @throws IOException unknown
+     */
     public static void createProgram() throws IOException
     {
-        System.out.println("Would you like to create a new file or add into a currrent file? 'Y' for Yes and 'N' for No");
+        System.out.print("Would you like to create a new file or add into a currrent file?");
+        System.out.println(" 'Y' for Yes and 'N' for No");
         String s = "";
         do
         {
@@ -77,12 +86,18 @@ public class ProgramExecutor
             }
             else
             {
-                System.out.println("Invalid Input. Please try again. 'Y' for a new file and 'N' for no");
+                System.out.print("Invalid Input. Please try again.");
+                System.out.println(" 'Y' for a new file and 'N' for no");
             }
         }
         while(true);
     }
 
+    /**
+     * this allows the user to type into the program
+     * @param out the printwriter-> can be null
+     * @throws IOException unreachable file
+     */
     public static void typeIn(PrintWriter out) throws IOException
     {
         System.out.println("Please type in your program here: 'HELP' for more instructions");
@@ -103,14 +118,19 @@ public class ProgramExecutor
         
     }
 
-    public static void loadFile() throws IOException, IOException
+    /**
+     * this loads a file into the program
+     * @throws IOException if the file can't be found
+     */
+    public static void loadFile() throws IOException
     {
         String s = "";
         boolean flag = true;
         do
         {
             flag = true;
-            System.out.println("Which file would you like to open? --Help for available files --Quit to quit");
+            System.out.print("Which file would you like to open?");
+            System.out.println(" --Help for available files --Quit to quit");
             s = sc.next();
             if(s.equalsIgnoreCase("QUIT"))
             {
